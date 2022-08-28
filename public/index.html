@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="Socket.io Server">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            html {
+                padding: 30px 10px;
+                font-size: 16px;
+                line-height: 1.4;
+                color: #737373;
+                background: #f0f0f0;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+            }
+
+            html, input {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+
+            body {
+                max-width:700px;
+                _width: 700px;
+                padding: 30px 20px 50px;
+                border: 1px solid #b3b3b3;
+                border-radius: 4px;
+                margin: 0 auto;
+                box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+                background: #fcfcfc;
+            }
+
+            h2 {
+                color: #D35780;
+                margin: 0 10px;
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            h2 span {
+                color: #bbb;
+                font-size: 35px;
+            }
+            
+            .container {
+                max-width: 380px;
+                _width: 480px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container";>
+            <h2><span>Acceso Denegado</span><br/><br/>
+                Conectado al Servidor
+            </h2>
+        </div>
+
+        <script src="socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+            socket.on('connect', function(){
+                console.log('Conectado al servidor');
+            });
+
+            socket.on('disconnect', function(){
+                console.log('Perdimos comunicación con el servidor');
+            });
+
+            socket.emit('mensaje',{nombre: 'Adrian'});
+
+            socket.on('mensaje', function(payload){
+                console.log('Escuchando:',payload);
+            });
+        </script>
+    </body>
+</html>
